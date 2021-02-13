@@ -2,7 +2,7 @@
   <table>
     <tr v-for="row in rows" :key="row">
       <td v-for="col in cols" :key="`${row}-${col}`">
-        Plant Goes Here
+        {{plants[(row - 1) * 3 + col - 1]}}
       </td>
     </tr>
   </table>
@@ -16,8 +16,21 @@ export default {
   data() {
     return {
       rows: 3,
-      cols: 3
+      cols: 3,
+      plants: [],
+      gameInterval: undefined
     }
+  },
+  created() {
+    for (let i = 0; i < this.rows; i++)
+        for (let j = 0; j < this.cols; j++)
+          this.plants.push(new Plant());
+    this.gameInterval = setInterval(() => {
+      for (let i = 0; i < this.rows; i++) 
+        for (let j = 0; j < this.cols; j++)
+          this.plants[i * 3 + j].tick();
+    }, 100);
+    
   }
 }
 </script>

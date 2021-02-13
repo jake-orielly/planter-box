@@ -2,8 +2,8 @@ class Plant {
     constructor() {
         this.age = 0;
         this.maturity = 0;
-        this.yield = 5;
-        this.growthSpeed = 1;
+        this.yield = parseInt(Math.random() * 5) + 1;
+        this.growthSpeed = parseInt(Math.random() * 5) + 1;
     }
 
     tick() {
