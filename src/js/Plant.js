@@ -10,6 +10,10 @@ class Plant {
         this.age++;
         this.maturity += this.growthSpeed;
     }
+
+    getMaturity() {
+        return this.maturity;
+    }
 }
 
 export default Plant;

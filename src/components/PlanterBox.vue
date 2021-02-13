@@ -2,7 +2,9 @@
   <table>
     <tr v-for="row in rows" :key="row">
       <td v-for="col in cols" :key="`${row}-${col}`">
-        {{plants[(row - 1) * 3 + col - 1]}}
+        <img 
+            :src="getPlantImage(plants[(row - 1) * 3 + col - 1])"
+        >
       </td>
     </tr>
   </table>
@@ -29,8 +31,13 @@ export default {
       for (let i = 0; i < this.rows; i++) 
         for (let j = 0; j < this.cols; j++)
           this.plants[i * 3 + j].tick();
-    }, 100);
-    
+    }, 100); 
+  },
+  methods: {
+    getPlantImage(plant) {
+      const stage = Math.min(parseInt(plant.getMaturity() / 100), 3);
+      return require(`../assets/plant-stage-${stage}.png`);
+    }
   }
 }
 </script>
