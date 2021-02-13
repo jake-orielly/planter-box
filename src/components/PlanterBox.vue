@@ -9,6 +9,8 @@
 </template>
 
 <script>
+import Plant from "../js/Plant.js"
+
 export default {
   name: 'PlanterBox',
   data() {
