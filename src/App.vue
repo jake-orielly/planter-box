@@ -1,16 +1,19 @@
 <template>
   <div id="app">
     <PlanterBox />
+    <SelectedInfo />
   </div>
 </template>
 
 <script>
 import PlanterBox from './components/PlanterBox.vue'
+import SelectedInfo from './components/SelectedInfo.vue'
 
 export default {
   name: 'App',
   components: {
-    PlanterBox
+    PlanterBox,
+    SelectedInfo
   }
 }
 </script>
