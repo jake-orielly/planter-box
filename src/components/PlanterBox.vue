@@ -1,12 +1,12 @@
 <template>
   <table>
-    <tr v-for="row in rows" :key="row">
+    <tr v-for="row in $store.state.rows" :key="row">
       <td 
-        v-for="col in cols" :key="`${row}-${col}`"
+        v-for="col in $store.state.cols" :key="`${row}-${col}`"
         @click="clickCell(row - 1, col - 1)"  
       >
         <img 
-            :src="getPlantImage(plants[(row - 1) * 3 + col - 1])"
+            :src="getPlantImage(row - 1, col - 1)"
         >
       </td>
     </tr>
@@ -14,35 +14,17 @@
 </template>
 
 <script>
-import Plant from "../js/Plant.js"
-
 export default {
   name: 'PlanterBox',
-  data() {
-    return {
-      rows: 3,
-      cols: 3,
-      plants: [],
-      gameInterval: undefined
-    }
-  },
   created() {
-    for (let i = 0; i < this.rows; i++)
-        for (let j = 0; j < this.cols; j++)
-          this.plants.push(new Plant());
-    this.gameInterval = setInterval(() => {
-      for (let i = 0; i < this.rows; i++) 
-        for (let j = 0; j < this.cols; j++)
-          this.plants[i * 3 + j].tick();
-    }, 100); 
+    this.$store.commit("initializePlants");
   },
   methods: {
     clickCell(x, y) {
-      this.$store.commit("setSelectedCell", this.plants[x * 3 + y]);
+      this.$store.commit("setSelectedCell", [x, y]);
     },
-    getPlantImage(plant) {
-      const stage = Math.min(parseInt(plant.getMaturity() / 100), 3);
-      return require(`../assets/plant-stage-${stage}.png`);
+    getPlantImage(x, y) {
+      return this.$store.getters.getImg([x, y]);
     }
   }
 }
