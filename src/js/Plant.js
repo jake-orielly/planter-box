@@ -17,10 +17,9 @@ class Plant {
 
     getOverview() {
         return {
-            age: this.age,
-            maturity: this.maturity,
-            yield: this.yield,
-            growthSpeed: this.growthSpeed
+            "Maturity": parseInt(Math.min(this.maturity / 100, 3)),
+            "Yield": this.yield,
+            "Growth Speed": this.growthSpeed
         }
     }
 }

@@ -29,10 +29,13 @@ const Store = new Vuex.Store({
         }
     },
     getters: {
-        getImg: (state) => (coords)  => {
+        getImg: (state) => (coords) => {
             const plant = state.plants[coords[0] * state.rows + coords[1]];
             const stage = Math.min(parseInt(plant.getMaturity() / 100), 3);
             return require(`./assets/plant-stage-${stage}.png`);
+        },
+        getSelectedPlant: (state) => {
+            return state.plants[state.selectedCell];
         }
     }
 })
