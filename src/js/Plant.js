@@ -14,6 +14,15 @@ class Plant {
     getMaturity() {
         return this.maturity;
     }
+
+    getOverview() {
+        return {
+            age: this.age,
+            maturity: this.maturity,
+            yield: this.yield,
+            growthSpeed: this.growthSpeed
+        }
+    }
 }
 
 export default Plant;

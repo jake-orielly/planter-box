@@ -1,7 +1,10 @@
 <template>
   <table>
     <tr v-for="row in rows" :key="row">
-      <td v-for="col in cols" :key="`${row}-${col}`">
+      <td 
+        v-for="col in cols" :key="`${row}-${col}`"
+        @click="clickCell(row - 1, col - 1)"  
+      >
         <img 
             :src="getPlantImage(plants[(row - 1) * 3 + col - 1])"
         >
@@ -34,6 +37,9 @@ export default {
     }, 100); 
   },
   methods: {
+    clickCell(x, y) {
+      this.$store.commit("setSelectedCell", this.plants[x * 3 + y]);
+    },
     getPlantImage(plant) {
       const stage = Math.min(parseInt(plant.getMaturity() / 100), 3);
       return require(`../assets/plant-stage-${stage}.png`);
@@ -43,5 +49,7 @@ export default {
 </script>
 
 <style scoped>
-
+table {
+  display: inline-block;
+}
 </style>
