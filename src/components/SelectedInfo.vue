@@ -27,16 +27,16 @@
 export default {
   name: 'SelectedInfo',
   computed: {
+    selectedPlant() {
+      return this.$store.getters.getSelectedPlant;
+    },
     plantInfo() {
-      let plant = this.$store.getters.getSelectedPlant;
-      return (plant ? plant.getOverview() : undefined);
+      return (this.selectedPlant ? this.selectedPlant.getOverview() : undefined);
     }
   },
-  data() {
-    return {
-      harvestClick() {
-        
-      }
+  methods: {
+    harvestClick() {
+      this.$store.commit("harvestPlant");
     }
   }
 }
