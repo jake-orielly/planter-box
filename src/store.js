@@ -29,7 +29,7 @@ const Store = new Vuex.Store({
                         if (plant)
                             plant.tick();
                     }
-            }, 100); 
+            }, 500); 
         },
         setSelectedCell(state, coords) {
             state.selectedCell = [coords[0] * state.rows + coords[1]];
@@ -43,6 +43,7 @@ const Store = new Vuex.Store({
                 amount: state.plants[state.selectedCell].harvestYield()
             });
             state.plants[state.selectedCell] = undefined;
+            state.selectedCell = undefined;
         }
     },
     getters: {
