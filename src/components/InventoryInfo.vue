@@ -6,7 +6,7 @@
         :key="item"
       >
         <td>
-          {{item}}:
+          {{titleCase(item)}}:
         </td>
         <td>
           {{amount}}
@@ -17,8 +17,16 @@
 </template>
 
 <script>
+import utilities from "../js/utilities.js";
+
 export default {
   name: 'InventoryInfo',
+  methods: {
+    titleCase(text) {
+      console.log(utilities.titleCase("hi there"))
+      return utilities.titleCase(text);
+    }
+  }
 }
 </script>
 
