@@ -25,7 +25,7 @@
 
 <script>
 export default {
-  name: 'SelectedInfo',
+  name: 'SelectedPlantInfo',
   computed: {
     selectedPlant() {
       return this.$store.getters.getSelectedPlant;
@@ -43,10 +43,6 @@ export default {
 </script>
 
 <style scoped>
-div {
-  margin-left: 3rem;
-}
-
 div, table { 
   display: inline-block;
 }

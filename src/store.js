@@ -31,6 +31,9 @@ const Store = new Vuex.Store({
                     }
             }, 500); 
         },
+        plantSeed(state) {
+            Vue.set(state.plants, state.selectedCell, new Plant());
+        },
         setSelectedCell(state, coords) {
             state.selectedCell = [coords[0] * state.rows + coords[1]];
         },
